@@ -1,7 +1,6 @@
 import Navbar from "./_components/navbar";
 import Hero from "./_components/hero";
 import Partners from "./_components/partners";
-import Categories from "./_components/categories";
 import PopularCourses from "./_components/popular-courses";
 import LearningPaths from "./_components/learning-paths";
 import GrowthStats from "./_components/growth-stats";
@@ -16,7 +15,6 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Partners />
-        <Categories />
         <PopularCourses />
         <LearningPaths />
         <GrowthStats />

@@ -6,237 +6,349 @@ import Image from "next/image";
 interface Course {
   id: string;
   title: string;
-  instructor: string;
+  author: string;
   category: string;
   level: string;
   thumbnail: string;
   lessons: string;
   duration: string;
   comments: string;
-  rating: number;
+  rating: string;
   price: string;
   period: string;
-  enrolled: string;
 }
 
+const studentAvatars = [
+  "/images/img_3_ellipse_b44979e1.png",
+  "/images/img_19_ellipse_3fe55918.png",
+  "/images/img_20_ellipse_0577f0e9.png",
+  "/images/img_21_ellipse_d0cd3adb.png",
+];
+
+// Row 1 (Figma Tab_Categories 21:33)
+const row1Categories = [
+  "Featured",
+  "Music",
+  "Drawing & Painting",
+  "Marketing",
+  "Animation",
+  "Social Media",
+  "UI/UX Design",
+  "Creative Marketing",
+];
+
+// Row 2 (Figma Frame 6 21:56)
+const row2Categories = [
+  "Digital Illustration",
+  "Film & Video",
+  "Crafts",
+  "Freelance & Entrepreneurship",
+  "Graphic Design",
+  "Photography",
+];
+
+// Row 3 (Figma Frame 7 21:63)
+const row3Categories = [
+  "Productivity",
+  "Web Development",
+  "Data Science",
+  "Cooking",
+];
+
+const allCourses: Course[] = [
+  {
+    id: "course-1",
+    title: "Learn Figma from Basic",
+    author: "by purepearl studio",
+    category: "UI/UX Design",
+    level: "Beginner",
+    thumbnail: "/images/img_18_frame_93ad9f9e.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+  {
+    id: "course-2",
+    title: "Build Digital Asset",
+    author: "by purepearl studio",
+    category: "Graphic Design",
+    level: "Beginner",
+    thumbnail: "/images/img_22_frame_c8826419.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+  {
+    id: "course-3",
+    title: "the Power of Big Data",
+    author: "by purepearl studio",
+    category: "Data Science",
+    level: "Beginner",
+    thumbnail: "/images/img_23_frame_4f3bdea5.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+  {
+    id: "course-4",
+    title: "Balancing Productivity an...",
+    author: "by purepearl studio",
+    category: "Productivity",
+    level: "Beginner",
+    thumbnail: "/images/img_24_frame_72e18d90.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+  {
+    id: "course-5",
+    title: "Mastering Money Manage...",
+    author: "by purepearl studio",
+    category: "Freelance & Entrepreneurship",
+    level: "Beginner",
+    thumbnail: "/images/img_25_frame_a8978945.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+  {
+    id: "course-6",
+    title: "From Idea to Startup Succ...",
+    author: "by purepearl studio",
+    category: "Freelance & Entrepreneurship",
+    level: "Beginner",
+    thumbnail: "/images/img_26_frame_69362b02.png",
+    lessons: "17 Lessons",
+    duration: "2 hours 16 mins",
+    comments: "59 Comments",
+    rating: "4.5",
+    price: "$25",
+    period: "/lifetime",
+  },
+];
+
 export default function PopularCourses() {
-  const categories = [
-    "Featured",
-    "Music",
-    "Drawing & Painting",
-    "Marketing",
-    "Animation",
-    "UI/UX Design",
-    "Film & Video",
-    "Web Development",
-    "Data Science",
-  ];
-
   const [activeCategory, setActiveCategory] = useState("Featured");
-
-  const courses: Course[] = [
-    {
-      id: "course-1",
-      title: "Learn Figma from Basic",
-      instructor: "by purepearl studio",
-      category: "UI/UX Design",
-      level: "Beginner",
-      thumbnail: "/images/img_18_frame_93ad9f9e.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-    {
-      id: "course-2",
-      title: "Build Digital Asset",
-      instructor: "by purepearl studio",
-      category: "Drawing & Painting",
-      level: "Beginner",
-      thumbnail: "/images/img_22_frame_c8826419.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-    {
-      id: "course-3",
-      title: "The Power of Big Data",
-      instructor: "by purepearl studio",
-      category: "Data Science",
-      level: "Beginner",
-      thumbnail: "/images/img_23_frame_4f3bdea5.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-    {
-      id: "course-4",
-      title: "Balancing Productivity and Self-Care",
-      instructor: "by purepearl studio",
-      category: "Featured",
-      level: "Beginner",
-      thumbnail: "/images/img_24_frame_72e18d90.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-    {
-      id: "course-5",
-      title: "Mastering Money Management",
-      instructor: "by purepearl studio",
-      category: "Marketing",
-      level: "Beginner",
-      thumbnail: "/images/img_25_frame_a8978945.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-    {
-      id: "course-6",
-      title: "From Idea to Startup Success",
-      instructor: "by purepearl studio",
-      category: "Web Development",
-      level: "Beginner",
-      thumbnail: "/images/img_26_frame_69362b02.png",
-      lessons: "17 Lessons",
-      duration: "2 hours 16 mins",
-      comments: "59 Comments",
-      rating: 4.5,
-      price: "$25",
-      period: "/lifetime",
-      enrolled: "26+",
-    },
-  ];
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   const filteredCourses =
     activeCategory === "Featured"
-      ? courses
-      : courses.filter((c) => c.category === activeCategory || c.id === "course-1" || c.id === "course-2");
+      ? allCourses
+      : allCourses.filter(
+          (c) =>
+            c.category.toLowerCase() === activeCategory.toLowerCase() ||
+            c.title.toLowerCase().includes(activeCategory.toLowerCase())
+        );
+
+  const displayedCourses =
+    filteredCourses.length > 0 ? filteredCourses : allCourses;
 
   return (
-    <section id="courses" className="py-20 bg-white border-t border-neutral-100">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-primary-600 uppercase">
-            Top Rated Selection
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-neutral-950">
-            Explore Popular Courses
+    <section id="courses" className="py-20 sm:py-24 lg:py-28 bg-white">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+        {/* Section Heading & Subtitle (Figma Frame 3 [12:101]) */}
+        <div className="text-center max-w-[920px] mx-auto space-y-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight text-neutral-950 leading-[1.2]">
+            Discover Your Passion,
+            <br className="hidden sm:inline" /> Build Your Skills
           </h2>
-          <p className="text-sm sm:text-base text-neutral-500">
-            Discover our highest-rated learning experiences designed to take your skills to the next level.
+          <p className="text-sm sm:text-base lg:text-[18px] text-neutral-500 font-normal leading-relaxed max-w-[840px] mx-auto">
+            At Bytespace Courses, we bring you closer to life-changing knowledge.
+            Explore a variety of courses across different fields, from
+            technology to the arts, and make a difference in your career and
+            life.
           </p>
         </div>
 
-        {/* Category Pills Slider / Row */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none justify-start lg:justify-center mb-12">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-neutral-950 text-white shadow-md"
-                    : "bg-neutral-50 text-neutral-600 hover:bg-neutral-100 border border-neutral-200/80"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
+        {/* Category Pills (Figma Tab_Categories, Frame 6, Frame 7) */}
+        <div className="mt-10 sm:mt-12 space-y-3 sm:space-y-3.5 max-w-[1140px] mx-auto">
+          {/* Row 1 */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 lg:gap-2.5">
+            {row1Categories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full px-3.5 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-[15px] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? "bg-secondary-400 text-neutral-950 shadow-sm"
+                      : "bg-neutral-50 text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Row 2 */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 lg:gap-2.5">
+            {row2Categories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full px-3.5 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-[15px] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? "bg-secondary-400 text-neutral-950 shadow-sm"
+                      : "bg-neutral-50 text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Row 3 */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 lg:gap-2.5">
+            {row3Categories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full px-3.5 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-[15px] font-medium transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? "bg-secondary-400 text-neutral-950 shadow-sm"
+                      : "bg-neutral-50 text-neutral-700 hover:bg-neutral-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+            <button
+              onClick={() => setShowAllCategories(!showAllCategories)}
+              className="text-primary-800 text-sm sm:text-[15px] font-medium px-2 py-2 hover:underline cursor-pointer transition-colors whitespace-nowrap"
+            >
+              + More
+            </button>
+          </div>
         </div>
 
-        {/* Course Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCourses.map((course) => (
+        {/* 6 Course Cards Grid (Figma Frame 8 [33:683]) */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {displayedCourses.map((course) => (
             <div
               key={course.id}
-              className="group flex flex-col rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-neutral-300"
+              className="bg-white rounded-[24px] border border-neutral-200 p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 group"
             >
-              {/* Card Thumbnail */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
+              {/* Thumbnail Container */}
+              <div className="relative h-[200px] w-full rounded-[16px] overflow-hidden bg-neutral-100">
                 <Image
                   src={course.thumbnail}
                   alt={course.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Level Badge */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="rounded-full bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-semibold text-neutral-800 shadow-sm">
-                    {course.level}
+
+                {/* Overlaid Badges on Image (Lessons, Duration, Comments) */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-1.5 pointer-events-none">
+                  <span className="bg-neutral-50/75 backdrop-blur-md rounded-full px-2.5 py-1 text-[11px] font-medium text-neutral-700 shadow-sm">
+                    {course.lessons}
                   </span>
-                </div>
-                {/* Rating Badge */}
-                <div className="absolute top-4 right-4 z-10 flex items-center gap-1 rounded-full bg-neutral-900/80 backdrop-blur-md px-2.5 py-1 text-xs font-semibold text-white">
-                  <span className="text-secondary-400">★</span>
-                  <span>{course.rating}</span>
+                  <span className="bg-neutral-50/75 backdrop-blur-md rounded-full px-2.5 py-1 text-[11px] font-medium text-neutral-700 shadow-sm">
+                    {course.duration}
+                  </span>
+                  <span className="bg-neutral-50/75 backdrop-blur-md rounded-full px-2.5 py-1 text-[11px] font-medium text-neutral-700 shadow-sm">
+                    {course.comments}
+                  </span>
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="flex flex-1 flex-col p-6 space-y-4">
-                {/* Meta details (Lessons, Duration, Comments) */}
-                <div className="flex items-center gap-3 text-xs text-neutral-500">
-                  <span>{course.lessons}</span>
-                  <span>•</span>
-                  <span>{course.duration}</span>
-                  <span>•</span>
-                  <span>{course.comments}</span>
-                </div>
-
-                {/* Course Title & Author */}
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-2">
-                    {course.title}
-                  </h3>
-                  <p className="mt-1 text-xs text-neutral-400 font-medium">
-                    {course.instructor}
+              {/* Course Info */}
+              <div className="mt-4 flex-1 flex flex-col justify-between">
+                {/* Title, Author, Rating */}
+                <div>
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-lg sm:text-[20px] font-semibold text-neutral-950 leading-snug line-clamp-1">
+                      {course.title}
+                    </h3>
+                    <div className="flex items-center gap-1 text-[17px] text-neutral-700 font-normal shrink-0">
+                      <span>{course.rating}</span>
+                      <svg
+                        className="w-4 h-4 text-neutral-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-xs text-neutral-500 font-normal mt-1">
+                    {course.author}
                   </p>
                 </div>
 
-                {/* Bottom Bar: Students Enrolled & Price */}
-                <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                  <div className="flex items-center -space-x-2">
-                    <div className="relative h-7 w-7 rounded-full border-2 border-white overflow-hidden">
-                      <Image src="/images/img_3_ellipse_b44979e1.png" alt="Student" fill className="object-cover" />
-                    </div>
-                    <div className="relative h-7 w-7 rounded-full border-2 border-white overflow-hidden">
-                      <Image src="/images/img_19_ellipse_3fe55918.png" alt="Student" fill className="object-cover" />
-                    </div>
-                    <div className="relative h-7 w-7 rounded-full border-2 border-white overflow-hidden">
-                      <Image src="/images/img_20_ellipse_0577f0e9.png" alt="Student" fill className="object-cover" />
-                    </div>
-                    <span className="pl-3 text-xs font-semibold text-neutral-500">{course.enrolled}</span>
+                {/* Meta Row: Level Pill & Student Avatar Stack */}
+                <div className="mt-5 flex items-center justify-between gap-2">
+                  {/* Level Pill */}
+                  <div className="bg-neutral-50 rounded-full px-3 py-1.5 flex items-center gap-1.5 shrink-0">
+                    <svg
+                      className="w-3.5 h-3.5 text-neutral-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M18 20V10M12 20V4M6 20v-6"
+                      />
+                    </svg>
+                    <span className="text-xs font-medium text-neutral-700">
+                      {course.level}
+                    </span>
                   </div>
 
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-xl font-bold text-neutral-900">{course.price}</span>
-                    <span className="text-xs text-neutral-400">{course.period}</span>
+                  {/* 4 Avatars + 26+ Lime Badge */}
+                  <div className="flex items-center -space-x-2">
+                    {studentAvatars.map((src, idx) => (
+                      <div
+                        key={idx}
+                        className="relative h-8 w-8 rounded-full border-2 border-white overflow-hidden bg-neutral-200 shrink-0"
+                      >
+                        <Image
+                          src={src}
+                          alt="Student"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-secondary-400 text-[11px] font-bold text-neutral-950 shrink-0">
+                      26+
+                    </div>
                   </div>
+                </div>
+
+                {/* Price Row */}
+                <div className="mt-5 pt-3 border-t border-neutral-100 flex items-baseline">
+                  <span className="text-xl font-bold text-primary-800">
+                    {course.price}
+                  </span>
+                  <span className="text-xs text-neutral-400 font-normal ml-0.5">
+                    {course.period}
+                  </span>
                 </div>
               </div>
             </div>
