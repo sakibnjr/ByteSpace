@@ -8,54 +8,67 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-30 w-full bg-primary-800 text-neutral-50 border-b border-primary-700/50">
-      <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+    <header className="absolute top-0 left-0 right-0 z-40 w-full bg-transparent text-white">
+      <div className="mx-auto flex h-24 lg:h-[120px] max-w-[1440px] items-center justify-between px-6 sm:px-10 lg:px-[120px]">
+        {/* Left: ByteSpace Logo (Figma: left: 122px, top: 35px) */}
+        <Link href="/" className="flex items-center transition-opacity hover:opacity-90">
           <Image
             src="/icons/logo.svg"
             alt="ByteSpace"
-            width={140}
-            height={30}
+            width={171}
+            height={35}
             priority
-            className="h-8 w-auto"
+            className="h-8 sm:h-9 w-auto"
           />
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium text-neutral-100">
-          <Link href="/" className="hover:text-secondary-400 transition-colors">
+        {/* Center: Nav Menu (Figma: left: 614.5px, top: 47px) */}
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10 text-[15px] font-medium text-white">
+          <Link href="/" className="hover:text-secondary-400 transition-colors font-semibold">
             Home
           </Link>
-          <Link href="#courses" className="hover:text-secondary-400 transition-colors">
+          <Link href="#courses" className="hover:text-secondary-400 transition-colors text-white/90">
             Courses
           </Link>
-          <Link href="#creators" className="hover:text-secondary-400 transition-colors">
+          <Link href="#creators" className="hover:text-secondary-400 transition-colors text-white/90">
             Creators
           </Link>
         </nav>
 
-        {/* Desktop Auth CTA */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Right: Auth & Cart (Figma: left: 1146px, top: 48px) */}
+        <div className="hidden md:flex items-center gap-7 lg:gap-8 text-[15px] font-medium text-white">
           <Link
             href="/login"
-            className="px-4 py-2 text-[15px] font-medium text-neutral-50 hover:text-secondary-300 transition-colors"
+            className="hover:text-secondary-400 transition-colors"
           >
             Sign In
           </Link>
           <Link
             href="/register"
-            className="inline-flex items-center justify-center rounded-xl bg-secondary-400 px-5 py-2.5 text-[15px] font-semibold text-neutral-950 transition-all hover:bg-secondary-300 hover:shadow-lg active:scale-95"
+            className="hover:text-secondary-400 transition-colors"
           >
             Join Us
           </Link>
+          <button
+            type="button"
+            className="p-1 text-white hover:text-secondary-400 transition-colors"
+            aria-label="Cart"
+          >
+            <Image
+              src="/icons/shopping_bag.svg"
+              alt="Cart"
+              width={20}
+              height={24}
+              className="h-5 w-auto"
+            />
+          </button>
         </div>
 
         {/* Mobile Hamburger Button */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg p-2 text-neutral-100 hover:bg-primary-700/50"
+          className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg p-2 text-white hover:bg-white/10"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
@@ -72,12 +85,12 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-primary-700/60 bg-primary-900 px-6 py-6 space-y-4">
+        <div className="md:hidden border-t border-white/10 bg-primary-900/95 backdrop-blur-md px-6 py-6 space-y-4">
           <nav className="flex flex-col gap-3 text-base font-medium text-neutral-100">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-secondary-400"
+              className="py-1 hover:text-secondary-400 font-semibold"
             >
               Home
             </Link>
@@ -96,18 +109,18 @@ export default function Navbar() {
               Creators
             </Link>
           </nav>
-          <div className="pt-4 border-t border-primary-800 flex flex-col gap-3">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between">
             <Link
               href="/login"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-xl border border-primary-600 text-neutral-50 hover:bg-primary-800 font-medium"
+              className="text-sm font-medium text-white hover:text-secondary-400"
             >
               Sign In
             </Link>
             <Link
               href="/register"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-xl bg-secondary-400 text-neutral-950 font-semibold hover:bg-secondary-300"
+              className="text-sm font-semibold text-secondary-400 hover:text-secondary-300"
             >
               Join Us
             </Link>
